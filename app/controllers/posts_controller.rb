@@ -22,13 +22,12 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
-	def edit		
+	def edit
+		@post = Post.find(params[:id])		
 	end
 
-	def update		
-	end
-
-	def destroy
+	def update
+		@post = Post.find(params[:id])
 		if @post.update(params[:post].permit(:title, :body))
 			redirect_to @post
 		else
@@ -37,6 +36,8 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
+		@post = Post.find(params[:id])
+
 		@post.destroy
 		redirect_to root_path
 	end
@@ -47,7 +48,7 @@ class PostsController < ApplicationController
 			params.require(:post).permit(:title, :body)
 		end
 
-		def find_post
-			@post = Post.find(params[:id])			
-		end
+		# def find_post
+		# 	@post = Post.find(params[:id])			
+		# end
 end
